@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog</title>
+  <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+</head>
+<body>
+  <header>
+    <h1> The Tech Blog </h1>
+  </header>
+  <nav>
+    <a href="/controllers/home-routes.js">Home</a>
+    <a href="/controllers/dashboard-routes.js">Dashboard</a>
+    {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/login"> Login</a>
+    {{/if}}
+  </nav>
+  
+</body>
+</html>
