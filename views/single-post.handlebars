@@ -1,11 +1,11 @@
 
-
+{{!-- a single post based on the id requested --}}
 <section class="container">
   <h2>{{post.title}}</h2>
+  <h2>{{post.body}}</h2>
+  <h3>{{post.user.username}}</h3>
   <h3>{{ format_time post.date }}</h3>
   <section class="flex-row justify-center">
-    {{#each post}}
-    {{post.body}}
-    {{/each}}
+    {{!-- {{comment}} option to leave comment? --}}
   </section>
 </section>

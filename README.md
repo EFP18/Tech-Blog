@@ -26,27 +26,27 @@ SO THAT I can publish articles, blog posts, and my thoughts and opinions
 PSEUDO CODE
 * HOMEPAGE:
   1. existing blog posts 
-  2. navigation link for homepage and dashboard
-  3. log in/sign up
+  <!-- 2. navigation link for homepage and dashboard -->
+  <!-- 3. log in/sign up -->
 
 * Sign up page:
-  1. create username and password
+  <!-- 1. create username and password -->
   2. click sign up button --> credentials are saved and logged in
 
 * Sign in:
-  1. enter username and password
+  <!-- 1. enter username and password -->
 
 * Signed in:
-  1. navigation links for homepage, dashboard, log out
+  <!-- 1. navigation links for homepage, dashboard, log out -->
 
 * Blog posts on home page:
-  1. post title and date created 
+  <!-- 1. post title and date created  -->
 
 * Click on existing blog post:
-  1. post title, contents, post creator's username, date created
+  <!-- 1. post title, contents, post creator's username, date created -->
   2. option to leave a comment
 
-* Enter commend and submit:
+* Enter comment and submit:
   1. comment saved
   2. post updated to display the comment, the comment creator’s username, and the date created
 

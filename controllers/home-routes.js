@@ -53,7 +53,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
       
       // Render the 'single-post' template with the post data
       res.render('single-post', {
-        layout: 'home', 
+        layout: 'main', 
         post
       })
     } catch (err) {
