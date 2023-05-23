@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../models/');
+const withAuth = require('../utils/auth')
 
 // get all posts for homepage
 router.get('/', async (req, res) => {
@@ -19,7 +20,7 @@ router.get('/', async (req, res) => {
     });
     // Render the 'all-posts' template with the posts data
     res.render('all-posts', {
-      layout: 'home', 
+      layout: 'main', 
       posts
     })
   } catch (err) {
@@ -28,16 +29,20 @@ router.get('/', async (req, res) => {
 });
 
 // get single post
-router.get('/post/:id', async (req, res) => {
-  if (!req.session.loggedIn) {
-      res.redirect('/login');
-  } else {
+router.get('/post/:id', withAuth, async (req, res) => {
+
     try {
-      // TODO: 1. Find a single Post by primary key and include associated User and Comments (Comment will also need to include a User)
+      // Find a single Post by primary key and include associated User and Comments (Comment will also need to include a User)
+      // a post has many comments, and each post has one user
       const dbPosts = await Post.findByPk(res.params.id, {
         include: [
           {
-            model: User, Comment
+            model: Comment,
+            include: [
+              {
+                model: User
+              }
+            ]
           }
         ]
       })
@@ -54,7 +59,6 @@ router.get('/post/:id', async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  }
 });
 
 router.get('/login', (req, res) => {

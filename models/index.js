@@ -2,6 +2,7 @@ const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comment');
 
+// create associations between different models
 Post.belongsTo(User, {
   foreignKey: 'userId',
   onDelete: 'CASCADE'

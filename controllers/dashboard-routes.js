@@ -42,10 +42,7 @@ router.get('/new', withAuth, (req, res) => {
 
 router.get('/edit/:id', withAuth, async (req, res) => {
   // If the user is not logged in, redirect the user to the login page
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-    // if the user is logged in, allow them to view a post by id
+  // if the user is logged in, allow them to view a post by id
     try { 
   
     // Find a Post by primary key
@@ -66,7 +63,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     } catch (err) {
       res.redirect('login');
     }
-  }
+
 });
 
 

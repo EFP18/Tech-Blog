@@ -1,4 +1,11 @@
-<h2>{{post.title}}</h2>
 
-<p>{{post.body}}</p>
 
+<section class="container">
+  <h2>{{post.title}}</h2>
+  <h3>{{ format_time post.date }}</h3>
+  <section class="flex-row justify-center">
+    {{#each post}}
+    {{post.body}}
+    {{/each}}
+  </section>
+</section>

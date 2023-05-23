@@ -14,11 +14,13 @@ const PORT = process.env.PORT || 3001;
 const sess = {
   secret: 'Super secret secret',
   cookie: {
+    // maximum age for a cookie to be valid
     maxAge: 300000,
     httpOnly: true,
     secure: false,
     sameSite: 'strict',
   },
+  // set up the session store
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -37,8 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(routes);
-
+// sync sequelize and listen to specific port
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
