@@ -1,16 +1,20 @@
-<!-- Loop over each object in the projects array -->
-{{#each post }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
+<!-- Loop over each object in the posts array -->
 
-      <a href="/post/{{post.id}}">{{post.title}}</a>
-    </h2>
+{{#if Post.length}}
+<div class="col-md-6 post-list">
+  <h3>Current posts:</h3>
+  {{#each posts as |post|}}
+  <div class="row mb-2">
+    <div class="col-md-8">
+      <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
+      <p>{{format_date date_created}}</p>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-sm btn-danger" data-id="{{post.id}}">Delete</button>
+    </div>
   </div>
-  <div class="col-md-7">
-    <p>
-      {{format_date date_created}}
-    </p>
-  </div>
+  {{/each}}
 </div>
-{{/each}}
+{{/if}}
+
+<script src="./js/edit.js"></script>

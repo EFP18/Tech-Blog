@@ -1,15 +1,21 @@
-<h2>Sign Up</h2>
+<div class="row justify-space-between-md">
+  <div class="login-card">
+    <h2 class="page-title">Sign Up</h2>
 
-<form action="/signup" method="GET" id="signup-form">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-  </div>
-  <button type="submit">Sign Up</button>
-</form>
+    <form class="form signup-form" id="signup-form">
+      <div>
+        <label for="username">Username:</label>
+        <input class="form-input" type="text" id="username" name="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input class="form-input" type="password" id="password" name="password">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>   
+</div> 
 
 <script src='/js/signup.js'>  </script>
