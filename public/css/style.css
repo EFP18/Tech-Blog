@@ -103,12 +103,12 @@ input {
 
 .navbar {
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   background-color: var(--dark);
 }
 
 .nav-item {
-  margin: 0 40px;
+  /* margin: 0 40px; */
 }
 
 .nav-item a {

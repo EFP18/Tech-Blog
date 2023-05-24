@@ -8,29 +8,37 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <header>
-    <h1> The Tech Blog </h1>
-  </header>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/dashboard">Dashboard</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login"> Login</a>
-    <a href="/signup"> Sign Up</a>
-    {{/if}}
-  </nav>
-  <main>
-    <aside>
-      <h2>My Dashboard</h2>
-    </aside>
-    <div >
-      {{{body}}}
+  <div class="flex-column justify-space-around">
+
+      <header class="display-flex justify-space-between align-center p-2">
+        <h1> The Tech Blog </h1>
+      </header>
+      <nav class="navbar ">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        {{#if loggedIn}}
+        <button id="logout" class="btn-no-style no-button">Logout</button>
+        {{else}}
+        <a href="/login"> Login</a>
+        <a href="/signup"> Sign Up</a>
+        {{/if}}
+      </nav>
+      <main class="container container-fluid mt-5">
+        <aside>
+          <h2>My Dashboard</h2>
+        </aside>
+        <div >
+          {{{body}}}
+        </div>
+      </main>
+      <footer></footer>
+      
+      <!-- Render script for logged in users only -->
+
+      {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
+      {{/if}}
+
     </div>
-  </main>
-  {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-</body>
+  </body>
 </html>

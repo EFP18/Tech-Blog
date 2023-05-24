@@ -1,0 +1,19 @@
+<!-- Loop over each object in the posts array -->
+
+<div class="col-md-6 post-list">
+  <h3>Your posts:</h3>
+  {{#each posts as |post|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4>
+          <a href="/dashboard/edit/{{post.id}}">
+            <p>{{post.title}}</p>
+            <p>{{format_date date_created}}</p>
+          </a>
+        </h4>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+
