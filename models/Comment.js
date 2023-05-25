@@ -9,6 +9,7 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false
     }
+    // foreign key
   },
   {
     sequelize
