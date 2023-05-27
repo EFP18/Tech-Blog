@@ -34,7 +34,7 @@ router.put('/:id', withAuth, async (req, res) => {
 });
 
 // delete the specific post with a specific id
-router.delete('/:id', withAuth, async (req, res) => {
+router.post('/:id', withAuth, async (req, res) => {
   try {
     const [affectedRows] = Post.destroy({
       where: {

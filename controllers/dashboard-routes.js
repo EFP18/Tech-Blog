@@ -25,7 +25,8 @@ router.get('/', withAuth, async (req, res) => {
 
     // Render the 'all-posts-admin' template in the 'dashboard' layout with the posts data
     res.render('all-posts-admin', {
-      layout: 'dashboard', 
+      layout: 'dashboard',
+      // loggedIn: true,
       posts
     })
 

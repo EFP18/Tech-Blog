@@ -8,8 +8,14 @@ Comment.init(
     body: {
       type: DataTypes.STRING,
       allowNull: false
-    }
-    // foreign key
+    },
+    // postId: {
+    //   type: DataTypes.INTEGER, 
+    //   references: {
+    //     model: 'post',
+    //     key: 'id'
+    //   }
+    // }
   },
   {
     sequelize

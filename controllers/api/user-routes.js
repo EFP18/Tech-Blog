@@ -57,7 +57,7 @@ router.post('/login', async (req, res) => {
 
 // logout route
 // we remove the session that's been stored within the sequelize db and it invalidates the cookie from the frontend
-router.delete('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

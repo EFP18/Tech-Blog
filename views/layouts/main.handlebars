@@ -13,12 +13,12 @@
       <nav class="navbar nav-item hero">
         <a href="/">Home</a>
         <a href="/dashboard">Dashboard</a>
-        {{#if loggedIn}}
+        {{!-- {{#if loggedIn}} --}}
         <button id="logout" class="btn-no-style">Logout</button>
-        {{else}}
+        {{!-- {{else}} --}}
         <a href="/login"> Login</a>
         <a href="/signup"> Sign Up</a>
-        {{/if}}
+        {{!-- {{/if}} --}}
 
         <header class="display-flex justify-space-between align-center p-2 white ">
           <h1> The Tech Blog </h1>
@@ -29,7 +29,7 @@
 
       <main class="container container-fluid mt-5">
         <aside>
-          <h2>My Dashboard</h2>
+          <h2>Welcome</h2>
         </aside>
         <div >
           {{{body}}}
@@ -39,9 +39,9 @@
       
       <!-- Render script for logged in users only -->
 
-      {{#if loggedIn}}
+      {{!-- {{#if loggedIn}} --}}
       <script src="/js/logout.js"></script>
-      {{/if}}
+      {{!-- {{/if}} --}}
 
     </div>
 </body>

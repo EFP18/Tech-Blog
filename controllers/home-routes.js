@@ -7,17 +7,19 @@ router.get('/', async (req, res) => {
   try {
     // Find all Posts and associated Users
     const dbPosts = await Post.findAll({
-      include: [
-        {
-          model: User, 
-          attributes: ['username']
-        },
-      ]
+      // include: [
+      //   {
+      //     model: User, 
+      //     attributes: ['username']
+      //   },
+      // ]
     }); 
+    console.log(dbPosts)
     // Serialize data 
-    const posts = dbPosts.map((post) => {
+    const posts = dbPosts.map((post) => 
       post.get({ plain: true })
-    });
+    );
+    console.log(posts);
     // Render the 'all-posts' template with the posts data
     res.render('all-posts', {
       layout: 'main', 
