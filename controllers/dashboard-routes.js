@@ -25,7 +25,8 @@ router.get('/', withAuth, async (req, res) => {
     // Render the 'all-posts-admin' template in the 'dashboard' layout with the posts data
     res.render('all-posts-admin', {
       layout: 'dashboard',
-      posts
+      posts,
+      loggedIn: req.session.loggedIn
     })
 
   } catch (err) {
@@ -36,6 +37,7 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/new', withAuth, (req, res) => {
   res.render('new-post', {
     layout: 'dashboard',
+    loggedIn: req.session.loggedIn
   });
 });
 
@@ -62,7 +64,8 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     // Render the 'edit-post' template in the 'dashboard' layout with the post data
     res.render('edit-post', {
       layout: 'dashboard', 
-      post
+      post,
+      loggedIn: req.session.loggedIn
     })
 
     } catch (err) {

@@ -23,7 +23,8 @@ router.get('/', async (req, res) => {
 
     // Render the 'all-posts' template with the posts data
     res.render('all-posts', {
-      posts
+      posts, 
+      loggedIn: req.session.loggedIn 
     })
   } catch (err) {
     res.status(500).json(err);
@@ -54,7 +55,8 @@ router.get('/post/:id', withAuth, async (req, res) => {
 
         // Render the 'single-post' template with the post data
         res.render('single-post', {
-          post
+          post,
+          loggedIn: req.session.loggedIn
         })
 
       }else {
