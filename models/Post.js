@@ -10,8 +10,9 @@ Post.init(
     //   allowNull: false, 
     //   primaryKey: true
     // },
-    title: {type: DataTypes.STRING},
-    body: {type: DataTypes.STRING}, 
+    title: DataTypes.STRING,
+    body: DataTypes.STRING, 
+    // type:?
     // userId: { type: DataTypes.INTEGER, 
     //   references: {
     //     model: 'user', 

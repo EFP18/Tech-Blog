@@ -10,23 +10,21 @@ router.get('/', withAuth, async (req, res) => {
       // use the req.session.userId
       where: { userId: req.session.userId },
 
-      include: [
-        {
-          model: Post, 
-          attributes: ['username']
-        },
-      ]
+      // include: [
+      //   {
+      //     model: Post, 
+      //     attributes: ['username']
+      //   },
+      // ]
     });
 
     // Serialize data 
-    const posts = dbPosts.map((post) => {
-      post.get({ plain: true })
-    });
+    const posts = dbPosts.map((post) => 
+      post.get({ plain: true }));
 
     // Render the 'all-posts-admin' template in the 'dashboard' layout with the posts data
     res.render('all-posts-admin', {
       layout: 'dashboard',
-      // loggedIn: true,
       posts
     })
 
@@ -56,15 +54,20 @@ router.get('/edit/:id', withAuth, async (req, res) => {
       ]
     })
     // Serialize data (use .get() method, or use raw: true, nest: true in query options)
-    const post = dbPosts.get({ plain: true});
+    // check that a post with that id exists
+    if (dbPosts) {
+      const post = dbPosts.get({ plain: true});
+    }
 
     // Render the 'edit-post' template in the 'dashboard' layout with the post data
-    res.render('edit-post', {layout: 'dashboard', post})
+    res.render('edit-post', {
+      layout: 'dashboard', 
+      post
+    })
 
     } catch (err) {
       res.redirect('login');
     }
-
 });
 
 

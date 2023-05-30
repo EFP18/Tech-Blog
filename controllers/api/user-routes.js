@@ -11,7 +11,10 @@ router.post('/', async (req, res) => {
 
     // save the user id, username, and loggedIn status to the req.session
     req.session.save(() => {
+      req.session.userId = newUser.id;
+      req.session.username = newUser.username;
       req.session.loggedIn = true;
+
       res.json(newUser);
     })
 
@@ -46,6 +49,8 @@ router.post('/login', async (req, res) => {
     //save the user id, username, and loggedIn status to the req.session
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.userId = user.id;
+      req.session.username = user.username;
       res.json({ user, message: 'You are now logged in!' });
 
     })

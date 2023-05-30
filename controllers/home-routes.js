@@ -7,6 +7,7 @@ router.get('/', async (req, res) => {
   try {
     // Find all Posts and associated Users
     const dbPosts = await Post.findAll({
+      include: [User]
       // include: [
       //   {
       //     model: User, 
@@ -14,15 +15,14 @@ router.get('/', async (req, res) => {
       //   },
       // ]
     }); 
-    console.log(dbPosts)
+
     // Serialize data 
     const posts = dbPosts.map((post) => 
       post.get({ plain: true })
     );
-    console.log(posts);
+
     // Render the 'all-posts' template with the posts data
     res.render('all-posts', {
-      layout: 'main', 
       posts
     })
   } catch (err) {
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// get single post
+// GET single post
 router.get('/post/:id', withAuth, async (req, res) => {
 
     try {
@@ -38,26 +38,29 @@ router.get('/post/:id', withAuth, async (req, res) => {
       // a post has many comments, and each post has one user
       const dbPosts = await Post.findByPk(res.params.id, {
         include: [
+          User,
           {
             model: Comment,
-            include: [
-              {
-                model: User
-              }
-            ]
+            include: [User]
           }
         ]
-      })
-      // Serialize data (use .get() method, or use raw: true, nest: true in query options)
-      const post = dbPosts.map((post) => {
-        post.get({ plain: true })
       });
+
+      // Serialize data (use .get() method, or use raw: true, nest: true in query options)
+      // check that post exists
+      if (dbPosts) {
+        // no map() because we are looking for a single post
+        const post = dbPosts.get({ plain: true });
+
+        // Render the 'single-post' template with the post data
+        res.render('single-post', {
+          post
+        })
+
+      }else {
+        res.status(404).end();
+      };
       
-      // Render the 'single-post' template with the post data
-      res.render('single-post', {
-        layout: 'main', 
-        post
-      })
     } catch (err) {
       res.status(500).json(err);
     }
