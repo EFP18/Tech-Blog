@@ -42,36 +42,72 @@ router.get('/new', withAuth, (req, res) => {
 });
 
 router.get('/edit/:id', withAuth, async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
-  // if the user is logged in, allow them to view a post by id
-    try { 
-  
-    // Find a Post by primary key
-    const dbPosts = await Post.findByPk(req.params.id, { 
-      include: [
-        {
-          model: Post, 
-          attributes: ['username']
-        }
-      ]
-    })
-    // Serialize data (use .get() method, or use raw: true, nest: true in query options)
-    // check that a post with that id exists
-    if (dbPosts) {
-      const post = dbPosts.get({ plain: true});
-    }
+  try{
+    const dbPost = await Post.findByPk(req.params.id);
 
-    // Render the 'edit-post' template in the 'dashboard' layout with the post data
-    res.render('edit-post', {
-      layout: 'dashboard', 
-      post,
-      loggedIn: req.session.loggedIn
-    })
-
-    } catch (err) {
-      res.redirect('login');
+    if (dbPost) {
+      const post = dbPost.get({ plain: true});
+      res.render('edit-post', {
+        layout: 'dashboard',
+        post
+      });
     }
+  } catch(err) {
+    res.status(404).end();
+
+  };
 });
+// router.get("/edit/:id", withAuth, (req, res) => {
+//   Post.findByPk(req.params.id)
+//     .then(dbPostData => {
+//       if (dbPostData) {
+//         const post = dbPostData.get({ plain: true });
+        
+//         res.render("edit-post", {
+//           layout: "dashboard",
+//           post
+//         });
+//       } else {
+//         res.status(404).end();
+//       }
+//     })
+//     .catch(err => {
+//       res.status(500).json(err);
+//     });
+// });
+
+
+// router.get('/edit/:id', withAuth, async (req, res) => {
+//   // If the user is not logged in, redirect the user to the login page
+//   // if the user is logged in, allow them to view a post by id
+//     try { 
+  
+//     // Find a Post by primary key
+//     const dbPosts = await Post.findByPk(req.params.id, { 
+//       include: [
+//         {
+//           model: Post, 
+//           attributes: ['username']
+//         }
+//       ]
+//     })
+//     // Serialize data (use .get() method, or use raw: true, nest: true in query options)
+//     // check that a post with that id exists
+//     if (dbPosts) {
+//       const post = dbPosts.get({ plain: true});
+//     }
+
+//     // Render the 'edit-post' template in the 'dashboard' layout with the post data
+//     res.render('edit-post', {
+//       layout: 'dashboard', 
+//       post,
+//       loggedIn: req.session.loggedIn
+//     })
+
+//     } catch (err) {
+//       res.redirect('login');
+//     }
+// });
 
 
 module.exports = router;

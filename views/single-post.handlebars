@@ -1,24 +1,26 @@
 
 {{!-- a single post based on the id requested --}}
 <section class="container">
-  <h2>{{post.title}}</h2>
-  <h2>{{post.body}}</h2>
-  <h3>Posted by: {{post.user.username}}</h3>
-  <h4>Date: {{ format_time post.date }}</h4>
+  <div class="card-body">
+    <h2>{{post.title}}</h2>
+    <h2>{{post.body}}</h2>
+    <h3>Posted by: {{post.user.username}}</h3>
+    <h4>Date: {{ format_time post.date }}</h4>
+  </div>
 </section>
 
 {{#if post.Comments}}
-  <section class="flex-row justify-center">
+  <section class="card flex-row justify-center">
     <h3>Comments</h3>
+    <div>
+      {{#each post.Comments}}
+        <div>
+          {{body}}
+          <p>{{User.username}}, {{format_date createdAt}}</p>
+        </div>
+      {{/each}}
+    </div>
   </section>
-  <div>
-    {{#each post.Comments}}
-      <div>
-        {{body}}
-        <p>{{User.username}}, {{format_date createdAt}}</p>
-      </div>
-    {{/each}}
-  </div>
 {{/if}}
 
   <form id="new-comment-form" class="card">
@@ -31,7 +33,7 @@
 
       <label class="form-label" for="commentBody">Comment</label>
 
-      <textarea name="comment-body" class="form-input"></textarea>
+      <textarea id="commentBody" name="comment-body" class="form-input"></textarea>
 
       <button type="submit" class="btn">Submit</button>
     </div>

@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
         username: req.body.username,
       },
     });
-
+    // check if that user exists
     if (!user) {
       res.status(400).json({ message: 'No user account found!' });
       return;
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
       req.session.loggedIn = true;
       req.session.userId = user.id;
       req.session.username = user.username;
-      res.json({ user, message: 'You are now logged in!' });
+      res.json({ user, message: 'You are now logged in your account!' });
 
     })
 

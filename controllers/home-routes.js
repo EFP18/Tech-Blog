@@ -7,13 +7,13 @@ router.get('/', async (req, res) => {
   try {
     // Find all Posts and associated Users
     const dbPosts = await Post.findAll({
-      include: [User]
-      // include: [
-      //   {
-      //     model: User, 
-      //     attributes: ['username']
-      //   },
-      // ]
+      // include: [User]
+      include: [
+        {
+          model: User, 
+          attributes: ['username']
+        },
+      ]
     }); 
 
     // Serialize data 
@@ -30,6 +30,31 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// router.get("/post/:id", (req, res) => {
+//   Post.findByPk(req.params.id, {
+//     include: [
+//       User,
+//       {
+//         model: Comment,
+//         include: [User],
+//       },
+//     ],
+//   })
+//     .then((dbPostData) => {
+//       if (dbPostData) {
+//         const post = dbPostData.get({ plain: true });
+
+//         res.render("single-post", { 
+//           post });
+//       } else {
+//         res.status(404).end();
+//       }
+//     })
+//     .catch((err) => {
+//       res.status(500).json(err);
+//     });
+// });
 
 // GET single post
 router.get('/post/:id', withAuth, async (req, res) => {

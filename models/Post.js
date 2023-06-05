@@ -5,24 +5,23 @@ class Post extends Model {}
 
 Post.init(
   {
-    // id: {type: DataTypes.INTEGER, 
-    //   autoIncrement: true, 
-    //   allowNull: false, 
-    //   primaryKey: true
-    // },
+    id: {type: DataTypes.INTEGER, 
+      autoIncrement: true, 
+      allowNull: false, 
+      primaryKey: true
+    },
     title: DataTypes.STRING,
     body: DataTypes.STRING, 
-    // type:?
-    // userId: { type: DataTypes.INTEGER, 
-    //   references: {
-    //     model: 'user', 
-    //     key: 'id'
-    //   }
-    // }
+    userId: { type: DataTypes.INTEGER, 
+      references: {
+        model: 'user', 
+        key: 'id'
+      }
+    }
   },
   {
     sequelize, 
-    // modelName: 'post'
+    modelName: 'post'
   }
 );
 
