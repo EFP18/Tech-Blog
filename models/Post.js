@@ -5,14 +5,16 @@ class Post extends Model {}
 
 Post.init(
   {
-    id: {type: DataTypes.INTEGER, 
+    id: {
+      type: DataTypes.INTEGER, 
       autoIncrement: true, 
       allowNull: false, 
       primaryKey: true
     },
     title: DataTypes.STRING,
     body: DataTypes.STRING, 
-    userId: { type: DataTypes.INTEGER, 
+    userId: { 
+      type: DataTypes.INTEGER, 
       references: {
         model: 'user', 
         key: 'id'
