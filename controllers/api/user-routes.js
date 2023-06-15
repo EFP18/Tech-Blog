@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { User } = require('../../models');
+const router = require("express").Router();
+const { User } = require("../../models");
 
 // create new user
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newUser = await User.create({
       username: req.body.username,
@@ -16,16 +16,14 @@ router.post('/', async (req, res) => {
       req.session.loggedIn = true;
 
       res.json(newUser);
-    })
-
-
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // login
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   // find user with that username
   try {
     const user = await User.findOne({
@@ -35,14 +33,14 @@ router.post('/login', async (req, res) => {
     });
     // check if that user exists
     if (!user) {
-      res.status(400).json({ message: 'No user account found!' });
+      res.status(400).json({ message: "No user account found!" });
       return;
     }
     // check if password is valid
     const validPassword = user.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ message: 'No user account found!' });
+      res.status(400).json({ message: "No user account found!" });
       return;
     }
 
@@ -51,18 +49,16 @@ router.post('/login', async (req, res) => {
       req.session.loggedIn = true;
       req.session.userId = user.id;
       req.session.username = user.username;
-      res.json({ user, message: 'You are now logged in your account!' });
-
-    })
-
+      res.json({ user, message: "You are now logged in your account!" });
+    });
   } catch (err) {
-    res.status(400).json({ message: 'No user account found!' });
+    res.status(400).json({ message: "No user account found!" });
   }
 });
 
 // logout route
 // we remove the session that's been stored within the sequelize db and it invalidates the cookie from the frontend
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

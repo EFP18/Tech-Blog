@@ -1,19 +1,15 @@
 <!-- Loop over each object in the posts array -->
-
-<div class="col-md-6 post-list">
-  <h3>Your posts:</h3>
+<div class="col-md-6 post-list list-group">
+  <h2>Your posts:</h2>
   {{#each posts}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4>
-          <a href="/dashboard/edit/{{id}}">
-            <p>{{title}}</p>
-            <p>{{format_date createdAt}}</p>
-          </a>
-        </h4>
+    <div class="row mb-2 card">
+      <div class="col-md-8 card-header flex-row justify-space-between">
+        <h4><a href="/dashboard/edit/{{id}}">{{title}}</a></h4>
+        <div> {{format_date createdAt}} </div>
+      </div>
+      <div class="card-body">
+        {{body}}
       </div>
     </div>
   {{/each}}
 </div>
-
-

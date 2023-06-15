@@ -1,57 +1,51 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title class="app-title">Tech Blog</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="app-title">Tech Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-<body>
-  <div class="flex-column justify-space-around">
+  <body >
+    <div class="flex-column justify-space-around">
 
-    <nav class="navbar nav-item hero">
-      <a href="/">Home</a>
-      <a href="/dashboard">Dashboard</a>
+      <nav class="navbar nav-item hero">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        {{#if loggedIn}}
+          <a id="logout" href="/">Logout</a>
+        {{else}}
+          <a href="/login"> Login</a>
+          <a href="/signup"> Sign Up</a>
+        {{/if}}
+        <header class="display-flex justify-space-between align-center p-2">
+          <h1> The Tech Blog </h1>
+        </header>
+      </nav>
+
+      <main class="container container-fluid mt-5">
+        <aside>
+          <h2>My Dashboard</h2>
+        </aside>
+        <div class="col-auto">
+          {{{body}}}
+        </div>
+
+      </main>
+
+    </div>
+
+    <footer class="footer flex-row justify-center">
       {{#if loggedIn}}
-      <a id="logout" href="/">Logout</a>
-      {{else}}
-      <a href="/login"> Login</a>
-      <a href="/signup"> Sign Up</a>
-      {{/if}}
-      <header class="display-flex justify-space-between align-center p-2">
-        <h1> The Tech Blog </h1>
-      </header>
-    </nav>
-        
-    <main class="container container-fluid mt-5">
-      <aside>
-        <h2>My Dashboard</h2>
-      </aside>
-      <div >
-        {{{body}}}
-      </div>
-      {{#if loggedIn}}
-      <div class="flex-row justify-center">
         <a href="/dashboard/new">➕ New Post</a>
-      </div>
       {{/if}}
-    </main>      
+    </footer>
 
-  </div>
-    
-
-
-  <footer class="flex-row justify-center">
-    The Tech Blog Folks
-  </footer>
-
-
-  <!-- Render script for logged in users only -->
-  {{#if loggedIn}}
-    <script src="/js/logout.js"></script>
-  {{/if}}
+    <!-- Render script for logged in users only -->
+    {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
   </body>
 
 </html>
